@@ -22,6 +22,7 @@
             maxsize: 102400,
             imgObj: {},
             showsize: false,
+            quality:0.1,
             url: ''
         }
         for (var param in params) {
@@ -127,15 +128,14 @@
         } else {
             ctx.drawImage(img, 0, 0, width, height);
         }
-        var ndata = canvas.toDataURL('image/jpeg', 0.1);
+        var ndata = canvas.toDataURL('image/jpeg', this.params.quality);
         moreCanvas.width = moreCanvas.height = canvas.width = canvas.height = 0;
         return ndata;
     };
     LUploader.prototype.upload = function(url, obj, basestr, type, li) {
         var text = window.atob(basestr.split(",")[1]);
         var buffer = new Uint8Array(text.length);
-        var pecent = 0,
-            loop = null;
+        var pecent = 0;
         for (var i = 0; i < text.length; i++) {
             buffer[i] = text.charCodeAt(i);
         }
@@ -147,7 +147,6 @@
                 var data = JSON.parse(xhr.responseText);
                 var result = data['status'];
                 var text = result == 0 ? '上传成功' : '上传失败';
-                clearInterval(loop);
                 span.style['width'] = '100%';
                 span.innerHTML = text;
             }
@@ -156,7 +155,6 @@
             }
         }
         xhr.upload.addEventListener('progress', function(e) {
-            if (loop) return;
             pecent = ~~(100 * e.loaded / e.total);
             span.style['width'] = pecent + '%';
             span.innerHTML = (pecent == 100 ? 99 : pecent) + '%';
