@@ -33,7 +33,7 @@
     LUploader.prototype.init = function() {
         var _self = this;
         _self.trigger.setAttribute('accept', _self.params.accept);
-        _self.params.multipe && _self.trigger.setAttribute('multipe', '');
+        _self.params.multiple && _self.trigger.setAttribute('multiple', '');
 
         var btn = document.querySelector('#' + _self.trigger.getAttribute('data-LUploader'));
         btn.addEventListener('click', function() {
@@ -55,7 +55,7 @@
                     li.appendChild(div_size);
                 }
                 var LUploaderList = _self.trigger.parentElement.querySelector('.LUploader-list');
-                if (!_self.params.multipe) { //假如是单个上传
+                if (!_self.params.multiple) { //假如是单个上传
                     if (_self.old_li) {
                         LUploaderList.removeChild(_self.old_li);
                     } else {
