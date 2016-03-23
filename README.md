@@ -1,4 +1,4 @@
-LUploader v1.0移动端图片压缩上传插件
+LUploader v1.1移动端图片压缩上传插件
 ==========
 纯原生js的移动端图片压缩上传插件，不依赖任何库
 ##用法
@@ -45,6 +45,7 @@ new LUploader(这里放需要绑定的input对象作为参数, {
             multiple: false,//是否一次上传多个文件 默认false
             maxsize: 102400,//忽略压缩操作的文件体积上限 默认100kb
             accept: 'image/*',//可上传的图片类型
+            quality: 0.1,//压缩比 默认0.1  范围0.1-1.0 越小压缩率越大
             showsize:false//是否显示原始文件大小 默认false
         });
 ...
